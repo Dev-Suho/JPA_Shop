@@ -15,6 +15,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.*;
+
 @RestController
 @RequiredArgsConstructor
 public class OrderSimpleApiController {
@@ -37,7 +39,7 @@ public class OrderSimpleApiController {
         List<Order> orderList = orderRepository.findAllByString(new OrderSearch());
         List<SimpleOrderDTO> result = orderList.stream()
                 .map(o -> new SimpleOrderDTO(o))
-                .collect(Collectors.toList());
+                .collect(toList());
 
         return result;
     }
@@ -63,8 +65,8 @@ public class OrderSimpleApiController {
     public List<SimpleOrderDTO> orderV3() {
         List<Order> orderList = orderRepository.findAllWithMemberDelivery();
         List<SimpleOrderDTO> result = orderList.stream()
-                .map(o -> new SimpleOrderDTO(o))
-                .collect(Collectors.toList());
+                .map(SimpleOrderDTO::new)
+                .collect(toList());
 
         return result;
     }
