@@ -86,7 +86,7 @@ public class OrderApiController {
 
     @GetMapping("/api/v7/orderList")
     public List<OrderFlatDto> orderListV7() {
-       return orderQueryRepository.findAllByDTOFlat();
+       return orderQueryRepository.findAllByDTO_Flat();
     }
 
     @Getter
